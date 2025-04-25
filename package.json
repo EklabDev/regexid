@@ -1,6 +1,6 @@
 {
   "name": "@eklabdev/regexid",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A deterministic regex traversal generator",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
