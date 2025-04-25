@@ -1,5 +1,5 @@
 {
-  "name": "regexid",
+  "name": "@eklab/regexid",
   "version": "1.0.1",
   "description": "A deterministic regex traversal generator",
   "main": "dist/index.js",
