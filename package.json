@@ -1,0 +1,32 @@
+{
+  "name": "regexid",
+  "version": "1.0.0",
+  "description": "A deterministic regex traversal generator",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/regex-next.git"
+  },
+  "keywords": [
+    "regex",
+    "generator",
+    "lexicographic",
+    "deterministic"
+  ],
+  "author": "EkLabDev",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^5.2.1",
+    "@types/mocha": "^10.0.10",
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
