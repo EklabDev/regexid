@@ -1,4 +1,4 @@
-# 📦 regexid
+# 📦 @eklabdev/regexid
 
 A deterministic, lexicographic regex match generator for fixed-length patterns.
 Supports literal + ranged character sets like `[a-z]{2}, [0-9]{1,3}`, and embedded string prefixes/suffixes.
@@ -24,7 +24,7 @@ Supports literal + ranged character sets like `[a-z]{2}, [0-9]{1,3}`, and embedd
 ## 🚀 Installation
 
 ```bash
-npm install regexid
+npm install @eklabdev/regexid
 ```
 
 Or if you're using Bun:
@@ -32,7 +32,7 @@ Or if you're using Bun:
 bash
 
 ```
-bun add regexid
+bun add @eklabdev/regexid
 ```
 
 ## 🛠️ Usage
@@ -44,7 +44,7 @@ import {
   parseRegex,
   getNextMatch,
   countRegexCombinations,
-} from 'regexid'
+} from '@eklabdev/regexid'
 
 const pattern = 'ex[a-b]{2}yz[0-2]{1}'
 
@@ -57,7 +57,7 @@ console.log(gen.next().value) // "exaayz1"
 console.log(gen.next().value) // "exabyz0"
 
 const total = countRegexCombinations(pattern)
-console.log(`Total combinations: ${total}`) // 18
+console.log(`Total combinations: ${total}`) // 12
 ```
 
 ## 📚 API

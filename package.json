@@ -2,8 +2,8 @@
   "name": "@eklabdev/regexid",
   "version": "1.0.3",
   "description": "A deterministic regex traversal generator",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
