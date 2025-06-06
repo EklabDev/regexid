@@ -120,3 +120,29 @@ describe('countRegexCombinations()', () => {
     expect(countRegexCombinations('[a-c]{1,2}')).to.equal(3 * 3 * 3) // 1+2 → 3 + 9
   })
 })
+describe('try generating the below index', () => {
+  it('should not throw any error', () => {
+    function generate() {
+      const pattern = 'EN[A-Za-z0-9]{4}'
+      const gen = nextRegexGenerator(pattern, 'EN0000')
+      const result = []
+      for (let i = 0; i < 100; i++) {
+        result.push(gen.next().value)
+      }
+      return result
+    }
+    expect(generate).to.not.throw()
+    const results = generate()
+    const regex = /^EN[A-Za-z0-9]{4}$/
+
+    // Test that all values match the pattern
+    results.forEach((value, index) => {
+      expect(value).to.match(regex, `Value at index ${index} should match pattern`)
+    })
+
+    // Test that values are in sequence
+    expect(results[0]).to.equal('EN0001')
+    expect(results[1]).to.equal('EN0002')
+    expect(results[2]).to.equal('EN0003')
+  })
+})

@@ -81,20 +81,42 @@ export function getNextMatch(tokens: RegexToken[], current: string): string | nu
 
     if (token.type === 'range') {
       const currentChar = chars[i]
+
+      // Find the next valid character in the ranges
+      let nextChar: string | null = null
+
+      // First, try to find next character in the current range
       for (const [min, max] of token.ranges) {
-        if (currentChar < max) {
-          const nextChar = String.fromCharCode(currentChar.charCodeAt(0) + 1)
-          chars[i] = nextChar
-          // Reset all range characters after to their minimum
-          for (let j = i + 1; j < chars.length; j++) {
-            if (structure[j].type === 'range') {
-              //@ts-expect-error cannot handle the or datastructure
-              chars[j] = structure[j].ranges[0][0]
-            }
-          }
-          return chars.join('')
+        if (currentChar >= min && currentChar < max) {
+          nextChar = String.fromCharCode(currentChar.charCodeAt(0) + 1)
+          break
         }
       }
+
+      // If no next char in current range, find the first char of the next range
+      if (!nextChar) {
+        for (const [min, max] of token.ranges) {
+          if (currentChar < min) {
+            nextChar = min
+            break
+          }
+        }
+      }
+
+      if (nextChar) {
+        chars[i] = nextChar
+        // Reset all range characters after to their minimum
+        for (let j = i + 1; j < chars.length; j++) {
+          if (structure[j].type === 'range') {
+            //@ts-expect-error cannot handle the or datastructure
+            chars[j] = structure[j].ranges[0][0]
+          }
+        }
+        return chars.join('')
+      }
+
+      // If we can't increment this position, reset it to minimum and continue to previous position
+      chars[i] = token.ranges[0][0]
     }
 
     i--
@@ -102,7 +124,6 @@ export function getNextMatch(tokens: RegexToken[], current: string): string | nu
 
   return null
 }
-
 export function countRegexCombinations(regexStr: string): number {
   const tokens = parseRegex(regexStr)
 
